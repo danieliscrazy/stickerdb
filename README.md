@@ -1,4 +1,5 @@
 # Hack Club Sticker Database
+> https://stickers.dld.hackclub.app
 
 This is the unofficial unified Hack Club sticker database! The code for this site is not open source yet (as it's a vibe coded mess I'm not comfortable with sharing yet), but you can contribute to the DB still if you have the source file! This means PNG or SVG, and _no scans_. Here's how to contribute:
 
@@ -7,3 +8,5 @@ This is the unofficial unified Hack Club sticker database! The code for this sit
 3. Upload it to the /stickers directory.
 4. Make a pull request! If you know the event and/or the artist of the sticker, mention it in the pull request!
 5. Wait for it to be merged!
+
+If you want to utilize API, use https://stickers.dld.hackclub.app/api/all.
