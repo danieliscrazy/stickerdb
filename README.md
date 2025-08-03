@@ -1,12 +1,14 @@
 # Hack Club Sticker Database
 > https://stickers.dld.hackclub.app
 
-This is the unofficial unified Hack Club sticker database! The code for this site is not open source yet (as it's a vibe coded mess I'm not comfortable with sharing yet), but you can contribute to the DB still if you have the source file! This means PNG or SVG, and _no scans_. Here's how to contribute:
+This is the unofficial unified Hack Club sticker database! If you have high quality digital/source files, please contribute! This means PNG or SVG, and _no pictures or scans_. Here's how to contribute:
 
 1. Fork the repo.
 2. Name your file(s) appropriately.
-3. Upload it to the /stickers directory.
-4. Make a pull request! If you know the event and/or the artist of the sticker, mention it in the pull request!
-5. Wait for it to be merged!
+3. Upload to the /static/stickers directory.
+4. If you know them, edit artists.json and.or programs.json and add the sticker(s) to it.
+4. Make a pull request!
 
-If you want to utilize API, use https://stickers.dld.hackclub.app/api/all.
+The code in the repo is the code for stickers.dld.hackclub.app. It also has an API. You can use https://stickers.dld.hackclub.app/api/all to get a listing of all stickers, and you can sort by program or artist by using those arguments, e.g. https://stickers.dld.hackclub.app/api/all?artist=@bunnyguy&program=High%20Seas. 
+
+> The code files (but not the stickers!) in this repository are AI generated.
