@@ -6,9 +6,9 @@ This is the unofficial unified Hack Club sticker database! If you have high qual
 1. Fork the repo.
 2. Name your file(s) appropriately.
 3. Upload to the /static/stickers directory.
-4. If you know them, edit artists.json and.or programs.json and add the sticker(s) to it.
+4. If you know who made them or what program they're from, add the sticker(s) to artists.json and/or programs.json.
 4. Make a pull request!
 
 The code in the repo is the code for stickers.dld.hackclub.app. It also has an API. You can use https://stickers.dld.hackclub.app/api/all to get a listing of all stickers, and you can sort by program or artist by using those arguments, e.g. https://stickers.dld.hackclub.app/api/all?artist=@bunnyguy&program=High%20Seas. 
 
-> The code files (but not the stickers!) in this repository are AI generated.
+> The code files in this repository are AI generated. (Not the stickers!)
