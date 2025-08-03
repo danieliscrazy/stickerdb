@@ -22,7 +22,7 @@ PROGRAMS_FILE = 'programs.json'
 # -------- GitHub Sticker Sync --------
 def download_missing_stickers():
     """Check GitHub and download missing PNG/SVG stickers to local folder."""
-    response = requests.get(f"{GITHUB_API_BASE}/stickers")
+    response = requests.get(f"{GITHUB_API_BASE}/static/stickers")
     if response.status_code != 200:
         print("Failed to fetch sticker list from GitHub.")
         return
@@ -114,31 +114,6 @@ def index():
 
 @app.route("/api/all")
 def api_all():
-    # Load metadata from artist and program files
-    artist_lookup = load_mapping(ARTISTS_FILE)
-    program_lookup = load_mapping(PROGRAMS_FILE)
-
-    items = []
-    for filename in os.listdir(STICKERS_FOLDER):
-        if filename.lower().endswith(('.png', '.svg')):
-            name, ext = os.path.splitext(filename)
-
-            artist = artist_lookup.get(filename, "none")
-            program = program_lookup.get(filename, "none")
-
-            item = OrderedDict([
-                ("name", name),
-                ("picture", f"{BASE_URL}/static/stickers/{filename}"),
-                ("program", program),
-                ("artist", artist)
-            ])
-            items.append(item)
-
-    items.sort(key=lambda x: x['name'].lower())
-    return jsonify({"items": items})
-
-@app.route("/api/filter")
-def api_filter():
     artist_filter = request.args.get("artist", "").lower()
     program_filter = request.args.get("program", "").lower()
 
