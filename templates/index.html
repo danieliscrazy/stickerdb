@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  /* This code is entirely made by AI, and as such no license or usage restrictions is placed on it. */
+  <meta charset="UTF-8">
+  <title>Sticker Gallery</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #search {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .sticker {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .sticker:hover {
+      transform: scale(1.03);
+    }
+
+    .sticker img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .name {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal a {
+      color: #007bff;
+      word-break: break-all;
+    }
+
+    .modal .close {
+      margin-top: 15px;
+      cursor: pointer;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sticker Gallery</h1>
+  <input type="text" id="search" placeholder="Search stickers...">
+
+  <div class="gallery" id="gallery">
+    {% for sticker in stickers %}
+    <div class="sticker"
+         data-name="{{ sticker.name }}"
+         data-file="{{ url_for('static', filename='stickers/' + sticker.file) }}"
+         data-artist="{{ sticker.artist }}"
+         data-program="{{ sticker.program }}"
+    >
+      <img src="{{ url_for('static', filename='stickers/' + sticker.file) }}" alt="{{ sticker.name }}">
+      <div class="name">{{ sticker.name }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+      <h2 id="modalTitle"></h2>
+      <p><strong>File:</strong> <a href="#" target="_blank" id="modalURL"></a></p>
+      <p id="modalArtist" style="display:none;"><strong>Artist:</strong> <span></span></p>
+      <p id="modalProgram" style="display:none;"><strong>Program:</strong> <span></span></p>
+      <div class="close" onclick="closeModal()">Close</div>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const stickers = document.querySelectorAll('.sticker');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalURL = document.getElementById('modalURL');
+    const modalArtist = document.getElementById('modalArtist');
+    const modalProgram = document.getElementById('modalProgram');
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      stickers.forEach(sticker => {
+        const name = sticker.dataset.name.toLowerCase();
+        sticker.style.display = name.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    stickers.forEach(sticker => {
+      sticker.addEventListener('click', () => {
+        const name = sticker.dataset.name;
+        const file = sticker.dataset.file;
+        const artist = sticker.dataset.artist;
+        const program = sticker.dataset.program;
+
+        modalTitle.textContent = name;
+        modalURL.textContent = file;
+        modalURL.href = file;
+
+        if (artist && artist !== "none") {
+          modalArtist.style.display = 'block';
+          modalArtist.querySelector('span').textContent = artist;
+        } else {
+          modalArtist.style.display = 'none';
+        }
+
+        if (program && program !== "none") {
+          modalProgram.style.display = 'block';
+          modalProgram.querySelector('span').textContent = program;
+        } else {
+          modalProgram.style.display = 'none';
+        }
+
+        modal.style.display = 'flex';
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
+</body>
+</html>
