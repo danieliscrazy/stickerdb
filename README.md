@@ -1,7 +1,7 @@
 # Hack Club Sticker Database
 > https://stickers.dld.hackclub.app
 
-This is the unofficial unified Hack Club sticker database! If you have high quality digital/source files, please contribute! This means PNG or SVG, and _no pictures or scans_. Here's how to contribute:
+This is the unofficial unified Hack Club sticker database! If you have high quality digital/source files of stickers from official Hack Club programs or events, please contribute! This means PNG or SVG, and _no pictures or scans_. Here's how to contribute:
 
 1. Fork the repo.
 2. Name your file(s) appropriately.
