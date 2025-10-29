@@ -101,11 +101,11 @@
     {% for sticker in stickers %}
     <div class="sticker"
          data-name="{{ sticker.name }}"
-         data-file="{{ url_for('static', filename='stickers/' + sticker.file) }}"
+         data-file="{{ sticker.picture }}"
          data-artist="{{ sticker.artist }}"
          data-program="{{ sticker.program }}"
     >
-      <img src="{{ url_for('static', filename='stickers/' + sticker.file) }}" alt="{{ sticker.name }}">
+      <img src="{{ sticker.picture }}" alt="{{ sticker.name }}">
       <div class="name">{{ sticker.name }}</div>
     </div>
     {% endfor %}
